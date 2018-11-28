@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> Spread / Rest（扩展与剩余）</title>
+	</head>
+	<body>
+		<h1> Spread / Rest（扩展与剩余）</h1>
+		<script type="text/javascript">
+			//1、扩展
+			console.log(...[1,2,3]);  // 1 2 3，把数组[1,2,3]扩展了
+			console.log(1, ...[2,3,4], 5); // 1 2 3 4 5
+			console.log([1, ...[2,3,4], 5]); // [1, 2, 3, 4, 5]
+			//2、剩余	
+			function foo(x,y,z) {
+			  console.log(x,y,z);
+			}
+			
+			let arr = [1,2,3];
+			foo(...arr); // 1 2 3
+			
+			
+			 function show(n1,n2,n3){
+                console.log(n1,n2,n3);
+            }
+			var arr=[5,7,9,1,6,7];
+			show(...arr);  //将数组中的前3位取出作为3个参数的值
+			
+			
+		</script>
+	</body>
+</html>

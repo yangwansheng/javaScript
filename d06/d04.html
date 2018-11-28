@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		 <script type="text/javascript">
+            //构造器，函数，对象
+            function Cat(nickname, color) {
+                //各个对象独有的
+                this.nickname = nickname;
+                this.color = color;
+            }
+            
+            //所有对象公有的    prototype 为获取对象原型 
+            //在Cat的原型对像中创建life属性和方法
+            Cat.prototype.life = 9;
+            
+            Cat.prototype.bark = function() {
+                console.log(this.nickname, this.color, this.life, "喵喵...");
+            }
+
+            var c1 = new Cat("波斯", "绿色");
+            c1.bark();//波斯 绿色 9 喵喵...
+            var c2 = new Cat("加菲", "红色");
+            c2.bark();//加菲 红色 9 喵喵...
+            
+            c2.life = 7;//修改原始属性值
+            console.log(c2);//取就近原则，c2的life为7
+        </script>
+	</body>
+</html>

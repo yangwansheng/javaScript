@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业2</title>
+		<style>
+			body{
+				padding: 30px;
+			}
+			.table1{
+				width: 100%;
+				text-align: center;
+				border-collapse:collapse;
+			}
+			.table1 tr td{
+				border: 1px solid black;
+				height: 40px;
+			}
+			.table1 tr{
+				background: lavender;
+			}
+		</style>
+	</head>
+	<body>
+		<table class="table1" id="table1">
+			<tr>
+				<td>
+					<input type="checkbox" onclick="app.boxall(this)" id="boxall"  />
+				</td>
+				<td>编号</td>
+				<td>任务</td>
+				<td>状态</td>
+				<td>操作</td>
+			</tr>
+		</table>
+		<form name="form1">
+			<p>
+				<label>编号：</label>
+				<!-- pattern="^[0-9]{3}$"-->
+				<input type="text" placeholder="请输入3位数字" onkeyup="value=value.replace(/[\d]{4,4}/im,'')"  id="id" />
+			</p>
+			<p>
+				<label>任务：</label>
+				<input type="text"  placeholder="请输入3到6位文字" id="task"/>
+			</p>
+			<p>
+				<label>状态：</label>
+				<input type="radio" id="state1" value="0" name="state" />未完成
+				<input type="radio" id="state2" value="1" name="state" />已完成
+			</p>
+			<p>
+				<input type="button" onclick="app.add();" value="添加" />
+				<input type="button" onclick="app.updata()" value="修改" />
+				<input type="button" onclick="app.delto()" value="批量删除" />
+			</p>
+			
+		</form>
+		<script type="text/javascript">
+			data = new Array();
+			data.push({id:101,task:"看完http协议",state:0});
+			data.push({id:102,task:"给爸妈打电话",state:0});
+			data.push({id:103,task:"上网买衣服",state:1});
+			var app = {
+				init:function(){
+					app.establish();
+				},
+				establish:function(){
+					var table = document.getElementById("table1");
+					
+					//删除元素  用于多次渲染页面需要
+					var trs = table.childNodes;
+					for(var i= trs.length-1; i >= 2;i--){
+						var nodei = trs[i];
+						table.removeChild(nodei);
+					}
+					
+					for(var i=0;i<data.length;i++){
+						var tr=document.createElement("tr");//创建一个tr
+						var td1 = document.createElement("td");
+						var td2 = document.createElement("td");
+						var td3 = document.createElement("td");
+						var td4 = document.createElement("td");
+						var td5 = document.createElement("td");
+						td1.innerHTML = "<input type='checkbox' onclick='app.showbox(this)' class='boxs' >";
+						td2.innerHTML = data[i].id;
+						td3.innerHTML = data[i].task;
+						if(data[i].state == 0){
+							td4.innerHTML = "未完成";
+							td5.innerHTML = "<a href='#' onclick='app.del(this)'>删除</a> <a href='#' onclick='app.upState(this)' >完成</a> <a href='#' onclick='app.setForm(this)'>编辑</a>";
+						}else{
+							td4.innerHTML = "完成啦";
+							td5.innerHTML = "<a href='#' onclick='app.del(this)'>删除</a> <a href='#' onclick='app.upState(this)' >未完成</a> <a href='#' onclick='app.setForm(this)'>编辑</a>"
+						}
+						//给创建的tr添加td子节点
+						tr.appendChild(td1);
+						tr.appendChild(td2);
+						tr.appendChild(td3);
+						tr.appendChild(td4);
+						tr.appendChild(td5);
+						//把tr添加到table里
+						table.appendChild(tr);
+					}
+				},
+				//删除
+				del:function(that){
+					var id = that.parentNode.parentNode.childNodes[1].innerHTML;//
+					for(var i in data){ 
+	            		if(data[i].id == id){//找到所在位置
+	            			data.splice(i,1);//删除
+	            		}
+	            	}
+					app.establish();
+				},
+				//状态修改
+				upState:function(that){
+					var id = that.parentNode.parentNode.childNodes[1].innerHTML;//得到Id
+					for(var i in data){ 
+	            		if(data[i].id == id){//找到所在位置
+	            			 if(data[i].state == 0){
+	            			 	data[i].state = 1;
+	            			 }else{
+	            			 	data[i].state = 0;
+	            			 }
+	            		}
+	            	}
+					app.establish();
+				},
+				
+				//添加
+				add:function(){
+					//获取文本框值
+					var ids = document.getElementById("id").value;
+					var tasks = document.getElementById("task").value;
+					var states = document.form1.state.value;
+					data.push({id:ids,task:tasks,state:states});
+					app.establish();
+				},
+				//渲染表单
+				setForm:function(that){
+					var id = that.parentNode.parentNode.childNodes[1].innerHTML;
+					for(var i in data){ 
+	            		if(data[i].id == id){//找到所在位置
+	            			document.getElementById("id").value = data[i].id;
+	            			document.getElementById("task").value = data[i].task;
+	            			if(data[i].state == 0){
+	            				document.getElementById("state1").checked = true;
+	            			}else{
+	            				document.getElementById("state2").checked = true;
+	            			}
+	            		}
+	            	}
+				},
+				//修改
+				updata:function(){
+					var ids = document.getElementById("id").value;
+					var tasks = document.getElementById("task").value;
+					var states = document.form1.state.value;
+					for(var i in data){ 
+	            		if(data[i].id == ids){//找到所在位置
+	            			data[i] = {id:ids,task:tasks,state:states};
+	            		}
+	            	}
+					app.establish();
+				},
+				//全选
+				boxall:function(that){
+					var boxs = document.getElementsByClassName("boxs");
+					for(var i in boxs){
+						if(that.checked){
+							boxs[i].checked=true;
+						}else{
+							boxs[i].checked=false;
+						}
+					}
+				},
+				//反选
+				showbox:function(that){
+					if(that.checked){
+						var boxs = document.getElementsByClassName("boxs");
+						var b = 0;//检查是否所有都选中了
+						for(var i in boxs){
+							if(!isNaN(i)){
+								if(boxs[i].checked){
+									b ++ ;
+									if(b == boxs.length){
+										document.getElementById("boxall").checked = true;
+										
+									}
+								}
+							}
+						}
+						b = 0;
+					}else{
+						//没有选中、取消父节点的选中状态
+						document.getElementById("boxall").checked = false;
+					}
+				},
+				//多删除
+				delto:function(){
+					var boxs = document.getElementsByClassName("boxs");
+					for(var i in boxs){
+						if(!isNaN(i)){
+							if(boxs[i].checked){
+								var id = boxs[i].parentNode.parentNode.childNodes[1].innerHTML;//
+								for(var a in data){ 
+				            		if(data[a].id == id){//找到所在位置
+				            			data.splice(a,1);//删除
+				            		}
+				            	}
+							}
+						}
+						
+					}
+					app.establish();
+				}
+				
+			}
+			app.init();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>NUll</title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			//null相对于引用类型的结果
+			//js对象
+            var user = {
+                name: "张学友",
+                address: "中国香港"
+            };
+            console.log(typeof(user));//Object
+            console.log(typeof(null));//Object 所以说null类型是对于Object引用类型的
+            console.log(typeof(undefined));//undefined
+            console.log(user.name);//
+            console.log(user.age);//undefined -- 在user对象中age没有是没有定义的属性
+            
+             if(user.age){ //返回undefined == null
+                console.log(user.age);
+            }else{
+                console.log("没有age属性");
+            }
+            
+            
+            if(typeof null === "object"){
+            	console.log("null的数据类型等于object");//结果为true
+            }else{
+            	console.log("null的数据类型不等于object");
+            }
+            if( typeof undefined === "undefined"){//null == undefined
+            	console.log("true"); // 结果为true
+            }else{
+            	console.log("false");
+            }
+            if(null !== undefined){
+            	console.log("ture"); //null等于undefined
+            }else{
+            	console.log("false");
+            }
+            
+            
+            //为false的情况
+            var i;
+            console.log(!!"");
+            console.log(!!0);
+            console.log(!!+0);
+            console.log(!!-0);
+            console.log(!!NaN);
+            console.log(!!null);
+            console.log(!!undefined); //false 一个！号表示转为true，再加一个！号变false
+            console.log(typeof(i)); //undefined
+            console.log(!!i); //false
+            console.log(false); 
+            //是否不为数字,is Not a Number
+            console.log(isNaN("Five")); //ture //判断是否不为数字， five不是数字
+            console.log(isNaN("5")); //false 5是数字
+            
+            
+            
+            function a(){
+                var n1=1;
+                n2=2;  //声明n2时未使用var，所以n2是全局变量，尽量避免
+                console.log(n1+","+n2);
+            }
+            a();//调用了a方法
+            console.log(n2); //输出了全局变量
+            console.log(window.n2);
+            console.log(window.n1);//输出一个名为n1的全局变量，但是没有赋值，出错
+            console.log(n1); //应为调用了a（）方法，所以定义了n1为局部变量，在外面无法获取，所以报错
+            
+            
+        </script>
+		</script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>测试跨域</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js" ></script>
+	</head>
+	<body>
+		<h1>什么是跨域呢？</h1>
+		<h1>https://www.baidu.com/8080:</h1>
+		<h2>1、http:为协议--协议不同，为跨域</h2>
+		<h2>2、//127.0.0.1:端口 -- 有些是www的 端口不同为跨域</h2>
+		<h2>3、baidu.com  域名不同为跨域</h2>
+		<h2>4、8020 服务器 ，服务器不同为跨域</h2>
+		<script type="text/javascript">
+			function show(data){
+				alert(data);
+			}
+		</script>
+		<script src="http://localhost:8080/user/getJson?show=show" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>箭头函数（Arrow Functions）</h1>
+		<script type="text/javascript">
+			//表达式函数
+			var fun = function(a,b) {
+			  	return a+b;
+			};
+			//箭头函数，在只有一行执行代码情况下
+			var foo = (a,b)=> a+b ;
+			
+			console.log(fun(1,2));//输出3
+			console.log(foo(1,2));//输出3
+			
+			//在有两条执行代码上的情况下
+			var can = (a,b) =>{console.log(a+b); return a*b }
+			
+			console.log(can(2,6));//输出 8 和12
+			//箭头函数不仅仅是让代码变得简洁，函数中 this 总是绑定总是指向对象自身。
+			function Person() {
+			    this.age = 0;
+			    //经常需要使用一个变量来保存 this
+			    var that = this;
+			    setInterval(function growUp() {
+			    	// 在非严格模式下，growUp() 函数的 this 指向 window 对象
+			    	//this.age++;
+			    	that.age++;
+			    }, 1000);
+			}
+			
+			//箭头函数可以省却这个麻烦：
+			unction Person(){
+			  	this.age = 0;
+				
+			  	setInterval(() => {
+			    	// |this| 指向 person 对象
+			    	this.age++;
+			  	}, 1000);
+			}
+			
+			var person = new Person();
+			
+			
+			
+		</script>
+	</body>
+</html>

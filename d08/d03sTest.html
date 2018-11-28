@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>评论星星</title>
+		<style>
+			.imgf {
+				background: url(../img/starky.png) 100% 100%;
+				float: left;
+				width: 21px;
+				height: 21px;
+			}
+			
+			.imgf2 {
+				background: url(../img/starsy.png) 100% 100%;
+				float: left;
+				width: 21px;
+				height: 21px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class='score'>
+			
+		</div>
+
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript">
+			
+			
+			
+			
+			;(function(factory) {
+				factory(window, jQuery, document);
+			}(function(win, jq, doc) {
+				$.fn.superPlus = function(obj, option) {
+					//创建节点
+					var _MainHTML = "" ;
+			        for(var j = 1 ; j <= 5 ; j++){
+			          _MainHTML += "<span class='imgf'  score-level="+ j +"></span>";
+			        };
+			        var texts =  $("<span>请选择你的评价</span>");
+					$(".score").html(_MainHTML);//写入节点
+					texts.insertAfter(this);
+					//获取子节点
+					var divs =  this.find('.imgf');
+					//鼠标悬浮事件
+					divs.hover(function(e){
+						var level = $(this).attr('score-level');//获取当前选中的序号
+						for(var i = 0 ; i<5 ; i++){
+							if(i < level){
+								//设置之前的的星星，为选中
+					          $(this).parents("[class^='score']").find('.imgf').eq(i).css({
+					            background: "url(../img/starsy.png)"
+					          });
+					        }else{
+					        	//设置之后的星星，之后的为不选中
+					          $(this).parents("[class^='score']").find('.imgf').eq(i).css({
+					          	background: "url(../img/starky.png)"
+					          })
+					        }
+						}
+					},function(e){
+						//鼠标离开事件
+				        var level = $(this).attr('score-level') || 0;//获取score-level属性值
+				        texts.html(textc(level));//设置提示文字
+				        //获取当前标签的active-level属性值
+				        var customLevel = $(this).parent('.score').attr('active-level');
+				        for(var i = 0 ; i<5 ; i++){
+				        	//parseInt(customLevel) 字符转换Int
+				          	if(i < parseInt(customLevel)){
+				          		//小于设置为选中
+				            	$(this).parents("[class^='score']").find('.imgf').eq(i).css({
+					           	 	background: "url(../img/starsy.png)"
+					          	});
+				          	}else{
+				          		//不小于为不选中
+				            	$(this).parents("[class^='score']").find('.imgf').eq(i).css({
+					          		background: "url(../img/starky.png)"
+					        })
+				          }
+				        }
+				    }).on('click',function(e){
+				    	//点击事件
+				      	e.stopPropagation();//阻止事件冒泡到父元素，解决事件冲突
+				      	var level = $(this).attr('score-level');//获取score-level属性值
+				      	//设置父标签的active-level属性值
+				      	$(this).parent('.score').attr('active-level',level);
+				      	//设置提示文字
+				      	texts.html(textc(level));
+				    }) ;  
+					//提示文字
+					function textc(n){
+						var descriptHTML = '';
+				        switch(parseInt(n))
+				        {
+				            case 1:
+				            	descriptHTML = '非常不好';
+				            break;
+				            case 2:
+				        		descriptHTML = '很不好';
+				        	break;
+				      		case 3:
+				        		descriptHTML = '一般般';
+				        	break;
+				      		case 4:
+				        		descriptHTML = '很好';
+				        	break;
+				      		case 5:
+				        		descriptHTML = '非常好';
+				        	break;
+				      		default:
+				        	descriptHTML = '请对该产品评价';
+				        }
+				      return descriptHTML;
+					}
+				
+				}
+			}));
+
+
+
+
+			//调用
+			$(".score").superPlus();
+		</script>
+	</body>
+
+</html>

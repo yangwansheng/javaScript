@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//创建主人类
+			function Master(aial,fo){
+				//喂食方法
+				feeding = function(){
+					console.log("主人给"+aial.name+"喂食了"+fo.name);
+				}
+				return feeding;//返回方法，用于调用
+			}
+			//创建食物父类
+			function Food(names){
+				this.name = names;
+				
+			}
+			//创建食物子类
+			var Fish = new Food("小鱼儿");
+			var Bone = new Food("硬骨头");
+						
+			//动物父类
+			function Animal(names){
+				this.name = names
+			}
+			//创建动物子类
+			var Car = new Animal("小猫猫");
+			var Dog = new Animal("小黑");
+			
+			var s1 =  Master(Car,Fish);
+			var s2 =  Master(Dog,Bone);
+			
+			//调用方法 feeding（）
+			s1();
+			s2();
+		</script>
+	</body>
+</html>

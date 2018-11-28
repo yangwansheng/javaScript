@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>多态</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//动物父类
+            function Animal()
+            {
+                this.name="动物";
+                //获取名字
+                this.getName=function(){
+                    return this.name;
+                }
+                //修改名字
+                this.setName=function(name){
+                    this.name=name;
+                }
+                //显示名字
+                this.bark=function(){
+                    console.log(this.name+"在叫...");
+                }
+            }
+            //狗父类
+            function Dog(){
+            	//Dog私有方法、多态
+                this.hunt=function(){console.log("狗在捕猎");};
+            }
+            //指定Dog构造函数的原型对象，简单理解为父类 --继承动物类
+            Dog.prototype=new Animal();
+            //重写原型对象中的bark方法
+            Dog.prototype.bark=function(){
+                console.log("汪汪...");
+            }
+            //定义Cat函数
+            function Cat(){
+            	//这是Cat私有方法，多态
+                this.hunt=function(){console.log("猫在抓老鼠");};
+            }
+            Cat.prototype=new Animal();
+            //重写原型对象中的bark方法
+            Cat.prototype.bark=function(){
+                console.log("喵喵...");
+            }
+            //定义一个方法，参数为一个函数
+            function play(animal)
+            {
+                animal.bark();//调用传进来函数的bark方法
+                animal.hunt();//调用传进来函数的hunt方法
+            }
+            
+            var dog=new Dog();//实例化Dog类
+            var cat=new Cat();//实例化Ca类
+            play(dog);//汪汪 狗在捕猎
+            play(cat);//喵喵 猫在捉老鼠
+        </script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//1、对象字面量创建对象
+            var o = {
+                name: "goodcat"
+            };
+
+            //2、通过Object创建对象
+            var obj = new Object();
+            obj.name = "badcat";
+
+            //3、构造函数，类，Cat就是一个类型
+            function Cat(name) {
+                this.name = name;
+            }
+
+            //对象（通过构造方法创建的对象）
+            var mycat = new Cat("tom");
+            var okcat = new Cat("ok");
+            console.log(mycat.name);
+
+            //对象的prototype是不允许直接访问的(类型的是可以访问的)，可以使用__proto__访问
+            console.log(mycat.prototype); //undefined
+            console.log(mycat.__proto__); //非标准,chrome
+
+            //通过修改原型实现扩展方法，类型的prototype是可以访问的
+            Cat.prototype.show = function() {
+                console.info("这是一只叫" + this.name + "的猫");
+            }
+            mycat.show();
+            okcat.show();
+            
+            //在Object的原型中添加了一个out方法
+            Object.prototype.out=function(){
+                alert(JSON.stringify(this));
+            }
+            
+            mycat.out();
+            okcat.out();
+            (new Date()).out();
+            "Hello".out();
+            Window.out();
+		</script>
+	</body>
+</html>

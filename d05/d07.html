@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>函数、隐式参数</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//创建函数
+			function fun1(){
+				//函数内容
+			};
+			//fun1();//调用函数
+			
+			//new Function("参数","参数","函数内容")
+			var fun2 = new Function("n1","n2","return n1+n2;");
+			
+			var fun3 = function(){
+				//函数内容
+			}
+			
+			//函数参数，匿名参数 arguments
+			function fun4(){
+				var sum=0;
+				//计算匿名参数
+                for(var i=0;i<arguments.length;i++){
+                    sum+=arguments[i];
+                }
+                return sum;
+			}
+			console.log(fun4(1,2,3,4,5,6));
+			console.log(fun4());//如果没有给参数，那么计算结果为0
+			
+			
+			function fun5(){
+				
+                console.log(arguments.length);
+                var that = this;
+                fun5_1=function(){
+                	//内部函数可以访问外部函数的所有内容，但是不能访问隐式匿名函数
+                	//如果函数只给了外部的函数内部函数没有那么值里为0，
+                	//arguments 只能访问自己本身的隐式匿名函数
+                    console.log(arguments.length);
+                    //console.log(that.arguments.length);//出错
+                }
+                return fun5_1;//返回内部函数
+            }
+            
+            var fun=fun5(1,2,3);
+            fun();//调用了内部函数
+            fun(1,2,3);//输出3
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

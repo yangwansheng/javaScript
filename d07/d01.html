@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+            //构造方法，类，函数
+            function Foo(name) {
+                this.name = name;
+            }
+
+            var f1 = new Foo("zhangguo");
+            //1、var f1={};
+            //2、f1.__proto__=Foo.prototype;
+            //3、Foo.call(f1,"zhangguo");
+
+            //在Foo的原型中添加属性age
+            Foo.prototype.age = 80;
+            Foo.prototype.show = function() {
+                console.log("name:" + this.name + ",age:" + this.age);
+            }
+
+            var f2 = new Foo("zhangsan");
+
+			//因为是父构造函数的属性age相比
+            console.log(f1.age == f2.age); //true
+            f1.show(); //zhangguo 80
+            f2.show();//zhangsan 80
+            
+            //age是对象的私有属性
+            f1.age = 60;
+            f1.show();//zhangguo 60 
+            
+            
+            
+
+            var A = function() {};
+            var a = new A();
+            console.log(a.__proto__); //A {}（即构造器function A 的原型对象）
+            console.log(a.__proto__.__proto__); //Object {}（即构造器function Object 的原型对象）
+            console.log(a.__proto__.__proto__.__proto__); //null
+        </script>
+	</body>
+</html>

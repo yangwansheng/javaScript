@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//给Object添加一个原始方法
+            Object.prototype.o=function(){
+                alert(this);
+                console.log(this);
+            }
+
+            var str="Hello JavaScript!";
+            str.o();//使用刚添加的原始方法
+            
+            "Hello Prototype!".o();
+            
+            var phone={"name":"Mi Plus5","price":999,"color":"white"};
+            phone.o();
+            console.log(phone.__proto__);  //Object
+            console.log(phone.prototype); //原始方法不允许直接访问
+            //对象的prototype是不允许直接访问的，可以使用__proto__访问
+		</script>
+	</body>
+</html>

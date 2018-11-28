@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>闭包</title>
+		<style>
+			.divBtn{
+				width: 100px;
+				height: 100px;
+				margin: 10px;
+				float: left;
+				background: green;
+				text-align: center;
+				font-size: 25px;
+				line-height: 100px;
+				font-weight: 700;
+				box-shadow: 0 0 5px gray;/*设置模糊边框*/
+			}
+			.divBtn:hover{
+				background: rgba(0, 0, 0, 0.6);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="divBtn">1</div>
+		<div class="divBtn">2</div>
+		<div class="divBtn">3</div>
+		<div class="divBtn">4</div>
+		<div class="divBtn">5</div>
+		<div class="divBtn">6</div>
+		<div class="divBtn">7</div>
+		<div class="divBtn">8</div>
+		<div class="divBtn">9</div>
+		<div class="divBtn">10</div>
+		<script type="text/javascript">
+			/*//如果是这种写法，div的点击事件弹出的框全部都是10
+			//应为函数块的作用
+			var f01 = function(){
+				var divs = document.getElementsByClassName("divBtn");
+				for(var i = 0 ;i<divs.length;i++ ){
+					divs[i].onclick = function(){
+						alert(i);
+					}
+				}
+			}
+			f01();*/
+			
+			//修改
+			var f01 = function(){
+				var divs = document.getElementsByClassName("divBtn");
+				for(var i = 0 ;i<divs.length;i++ ){
+					//divs[i].onclick = ()(i)  //第一个括号为函数，第二个为函数的参数
+					divs[i].onclick = (function(n){
+						//返回一个函数，作为div的点击事件的函数方法
+						return function(){
+							alert(n);
+						}
+					})(i);
+				}
+			}
+			f01();
+			
+			
+			var fun = function(){
+				var i = 0;
+				var foo = function(){
+					i++;
+					return i;
+				}
+				return foo;
+			}
+			
+			var f1 = fun();
+			console.log(f1());
+			console.log(f1());
+			
+			
+			
+		</script>
+	</body>
+</html>

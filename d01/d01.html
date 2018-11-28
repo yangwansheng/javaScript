@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>undefined</title>
+	</head>
+	<body>
+		<!--<script type="text/javascript" src=""></script>-->
+		<script type="text/javascript">
+			//定义对象
+			var user = {
+				name:"yang",
+				sex :"boy"
+			}
+			console.log(user.age);//user.age是对象中没有定义的，结果为undefined
+			
+			var i ;
+			console.log(i); // i 是变量没有赋值 结果为 undefined
+			
+			
+			function a(data){
+				console.log(data);//data 方法参数没有赋值，当解释执行时data为nudefined
+			}
+			a(1);//调用a函数，并且给参数为1 data参数就不为undefined了
+			
+			
+			var fun = a();//参数未赋值
+			console.log(fun);//当函数没有返回值时为undefined
+		</script>
+	</body>
+</html>

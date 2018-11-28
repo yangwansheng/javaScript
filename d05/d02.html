@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>取值</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//对象中可包含的内容
+            var obj1 = [{
+                name: "jack"
+            },{
+                name: "lucy",  //常量
+                hobby:["读书","上网","代码"],  //数组
+                friend:{name:"mark",height:198,friend:{}},  //对象
+                show:function(){  //函数
+                    console.log("大家好，我是"+this.name);
+                }
+            }];
+            //对象中的this是动态的，指向的是：调用者
+            obj1[1].show();
+            
+            
+            //取值
+            var obj2={"nick name":"pig",realname:"Rose","sex":"boy"};
+            console.log(obj2["nick name"]);//pig 通过key取值
+            //console.log(obj2.nick name);//错误
+            console.log(obj2.realname);//Rose 点号取值 前提是key中没有空格
+            console.log(obj2["realname"]);//Rose 通过key取值
+            //console.log(obj2[realname]);//错误
+            console.log(obj2.sex);//boy
+            
+            
+            
+            
+            //遍历取值
+            var obj3 = {name:"tom",age:18,sex:"boy"};
+            //1、枚举
+            for (var key in obj3) {
+                console.log(key+"："+obj3[key]);//枚举通过key取值
+            }
+            //修改
+            obj3.name="Queen";//修改属性值
+            //添加属性
+            obj3.height=170;  
+            for (var key in obj3) {
+                console.log(key+"："+obj3[key]);//枚举通过key取值
+            }
+            //添加方法 obj8.show=function()  //添加方法
+            obj3.show = function() {
+                console.log("名字是："+this.name+"，年龄是"+this.age);
+            }
+            obj3.show();
+            //引用
+            var obj4 = obj3;
+            obj4.show();
+		</script>
+	</body>
+</html>

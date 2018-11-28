@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>对象的原型</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//1、对象字面量创建对象
+            var o={name:"goodcat"};
+            
+            //2、通过Object创建对象
+            var obj=new Object();
+            obj.name="badcat";
+            
+            //3、构造函数，类，Cat就是一个类型
+            function Cat(name){
+                this.name=name;
+            }
+            
+            //对象（通过构造方法创建的对象）
+            var mycat=new Cat("tom");
+            console.log(mycat.name);
+            
+            //类型判断
+            console.log(mycat instanceof Cat);//true
+            console.log(mycat instanceof Object);//true
+		</script>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>原型链</title>
+	</head>
+	<body>
+		prototype 为获取对象原型  函数才有的属性
+		__proto__ 原型链  每个对象都有的属性
+		constructor 构造函数
+		<script type="text/javascript">
+			o={};
+			var Cat = function(){};
+			var mycat = new Cat();
+			
+			//Cat的原型链 === Cat的构造函数的对象原型
+			console.log(Cat.__proto__ === Cat.constructor.prototype);//true
+			
+			//所有构造器/函数的__proto__都指向Function.prototype，
+			console.log(Cat.__proto__ === Function.prototype);//true
+			
+			//所有对象的__proto__都指向其构造器的prototype  mycat的对象是Cat
+			console.log(mycat.__proto__ === Cat.prototype);//true
+			
+			//mycat不是构造器
+			console.log(mycat.__proto__ === Function.prototype)//false
+			
+			//对于函数对象，除了__proto__属性之外，还有prototype属性
+			console.log(Cat.__proto__ === Function.__proto__)//true
+			
+//			(function(){
+//				var a=b=3;
+//			})();
+//			alert(b);
+			
+			for (var i=0;i<5;i++) {
+				setTimeout(function(){
+					console.log("这是第："+i+"个 i")
+				},5000)
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

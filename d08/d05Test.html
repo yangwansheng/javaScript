@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>插件参数</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js" ></script>
+		<script type="text/javascript" src="../js/jQuery.superPlus.1.0.js" ></script>
+	</head>
+	<body>
+		<button>按钮1</button><br />
+        <button>按钮2</button><br />
+        <input type="text" value="username" /><br />
+        <input type="text" value="password" />
+        <script type="text/javascript">
+        	$("button").superPlus({
+        		options:100,
+        		//属性
+        		background:"red",
+        		//回调函数
+        		changeAfter:function(){
+        			alert("你点击了按钮");
+        		}
+        	});
+            $("input").superPlus({
+            	options:200,
+            	background:"green",
+            	changeAfter:function(){
+            		$("input").hide(2000).show(1000);
+            	}
+            });
+        </script>
+	</body>
+</html>

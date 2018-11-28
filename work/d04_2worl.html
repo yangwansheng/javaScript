@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//人父类
+            function Person() {
+            	//name属性
+                this.name = "人";
+                //封装name属性
+                this.getName = function() { //读 
+                    return name;
+                };
+                //封装name属性
+                this.setName = function(_name) { //写
+                	//判断wight写入的参数是否正确
+                    if(_name != "" || _name != null) {
+                        name = _name;
+                    } else {
+                        throw "请输入名字";//抛出错误
+                    }
+                }
+            }
+			function Student(){
+				this.hunt=function(){console.log("学习的学生");};
+			}
+			function Worker(){
+				this.hunt=function(){console.log("工作的工人");};
+			}
+			Student.prototype = new Person();//通过prototype继承
+			Worker.prototype = new Person();//通过prototype继承
+			
+		 	var stu = new Student();
+		 	var wor = new Worker();
+			
+			stu.hunt();
+			wor.hunt();
+			
+		</script>
+	</body>
+</html>

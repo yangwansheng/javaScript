@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>闭包2</title>
+	</head>
+	<body>
+		<h2>当一个内部函数被调用，就会形成闭包，
+		闭包就是能够读取其他函数内部变量的函数</h2>
+		<script type="text/javascript">
+			var fun = function(){
+				var n = 1;
+				var foo = function(){
+					n++;
+					return n; //返回一个变量 i
+				}
+				return foo; //返回一个函数方法
+			}
+			
+			var f1 = fun;
+			var f2 = fun();
+			//f1 不等于f2     但是f1() 与  f2是同一个函数内容; 
+			console.log(f2());//2
+			console.log(f2());//3
+			console.log(f2());//4
+			//当方法重新被调用，函数的内存将会new一个会话
+			// f2 与 f3 不在同一个会话中
+			var f3 = fun();
+			console.warn(f3());//2
+			console.warn(f3());//3
+			console.warn(f3());//4
+			
+			
+			//f2() 与  f1()()//虽然调用了一样的方法，
+			//但是调用f1() 变量都会重新赋值 ,所以他们的内部函数 foo 都不在同一个会话中
+			console.log(f1()());//2
+			console.log(f1()());//2
+			console.log(f1()());//2
+			
+			/*
+			局部变量无法共享和长久的保存，而全局变量可能造成变量污染，
+			所以我们希望有一种机制既可以长久的保存变量又不会造成全局污染。
+			
+			使一个局部变量可以作为全局变量使用
+			*/
+			
+		</script>
+	</body>
+</html>

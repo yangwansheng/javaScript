@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>iife</title>
+	</head>
+	<body>
+		javascript没有块级作用域但有函数级作用域，可以使用IIFE模拟块级作用域。
+		<script type="text/javascript">
+			function calc(){
+                for(var i=0;i<5;i++){
+                    console.log(i);//0,1,2,3,4
+                }
+                console.log(i);//5 因为没有块级作用，所以这个i还可以使用
+            }
+　　　　　　　	calc();
+
+			function calc1() {
+                
+                //IIFE 清除块级作用
+                (function() {
+                    for(var i = 0; i < 5; i++) {
+                        console.log(i); //0,1,2,3,4
+                    }
+                })();
+                
+                console.log(i); //报错
+            }
+
+            calc1();
+
+	
+		
+		</script>
+	</body>
+</html>

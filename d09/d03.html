@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>默认参数</h1>
+		<script type="text/javascript">
+			//没有默认参数的函数
+			function add1(a,b){
+				return a+b;
+			}
+			console.log(add1());//应为没有传参进去，变成两个underfuned相加 结果 NaN
+			console.log(add1(1));//一个numBer加一个undefuned 结果 NaN
+			console.log(add1(1,2));//结果3
+			//带默认参数的函数
+			function add2(a=100,b=200){
+				return a+b;
+			}
+			console.log(add2());//300
+			console.log(add2(1));//201
+			console.log(add2(1,2));//3
+			//箭头函数
+			var add3 = (a= 100,b =200) => a+b;
+			console.log(add3());//300
+			console.log(add3(1));//201
+			console.log(add3(1,2));//3
+		</script>
+	</body>
+</html>

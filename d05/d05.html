@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>原型关系</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			if(typeof Object.create==="undefined"){
+            	//给Object添加方法
+                Object.create=function(proto){
+                    //构造方法，F是一个类型
+                    var F=function(){};
+                    //指定类型F的原型  proto为父类
+                    F.prototype=proto;
+                    //创建一个F类型的对象
+                    return new F();
+                }
+            }
+			
+			var rose = {
+				name : "rose"
+			}
+			
+			var lucy=Object.create(rose);  //简单认为是：创建一个对象且继承rose
+            lucy.name="lucy";  //重写
+            
+            var jack=Object.create(rose);
+            jack.name="jack";
+            
+            //修改原型中的方法
+            rose.show=function(){
+                console.log("姓名->"+this.name);
+            }
+            
+            lucy.show();//lucy
+            jack.show();//jack
+            rose.show();//rose
+    
+            //删除属性
+            delete lucy.name;   
+            //调用方法，输出
+            lucy.show(); //rose
+            delete rose.name;
+            rose.show(); //undefined
+            
+            //删除函数
+            delete rose.show;  
+            //错误，rose.show is not a function
+            rose.show();
+            
+		</script>
+	</body>
+</html>

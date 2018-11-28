@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*String.prototype.trim = function(){
+				//var that = this ;
+				var str; 
+				//去除左侧空格符号
+				str = this.replace(/^[\s\n\t]+/g, "");
+				//去除右侧空格符号
+				str = str.replace(/[\s\n\t]+$/g, "");
+				console.log(str);
+				return str;//返回一个全新的str
+			}
+			var str = '  fghjk    ';
+			str.trim();
+			*/
+			
+			//作业二
+			//创建实现继承的方法
+			if(typeof Object.beget==="undefined"){
+            	//给Object添加方法
+                Object.beget=function(proto){
+                    //构造方法，F是一个类型
+                    var F=function(){};
+                    //指定类型F的原型  proto为父类
+                    F.prototype=proto;
+                    //创建一个F类型的对象
+                    return new F();
+                }
+           }
+			//动物类型
+			var Animal = {
+				name:'动物',
+				food:'食物',
+				eat:function(){
+					console.log("小狗爱吃骨头");
+				}
+			}
+			
+			//创建小狗 ，指定原型
+			var dog=Object.beget(Animal);
+			dog.name = "小狗";
+			dog.food = "骨头";
+			//对象添加方法、属性
+			Animal.show = function() {
+				console.log(this.name+"喜欢吃"+this.food);
+			}
+			dog.eat();
+			dog.show();
+			var cat = Object.beget(Animal);
+			cat.name = "小猫";
+			cat.food = "鱼儿";
+			cat.show();
+			
+		</script>
+	</body>
+</html>

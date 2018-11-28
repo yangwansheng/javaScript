@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>方法自动提升</title>
+		
+		
+		<script type="text/javascript">
+			
+			
+			//调用方法
+			f1();
+			//定义方法
+			function f1(){
+				console.log("我是f1方法");
+			}
+			//出现了方法自动提升，意思是，文档解释时将定义f1方法的代码放到了开头。
+			
+			
+			
+			
+			//f2是用变量形式接收函数
+			f2();//此处报错，应为文档f2是变量形式的函数，必须先定义在调用
+			var f2 = function(){
+				console.log("我是f2");
+			}
+			f2(); //正确
+			
+			//建议使用第二种方法
+		</script>
+		
+		
+	</head>
+	<body>
+	</body>
+</html>

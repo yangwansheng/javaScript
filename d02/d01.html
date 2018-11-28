@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>方法作为参数</title>
+	</head>
+	<body>
+		
+		
+		<script type="text/javascript">
+			
+			//原始
+			function a1(arr){
+				for(var i = 0; i<arr.length; i++){
+					//这里我们一个处理，给arr数组重新赋值，但是赋值内容要改变就要写多个a方法了
+					//我们可以利用相同的代码作为一个方法，不同的代码封装成不同的方法，进行作为参数调用该方法
+					arr[i] = arr[i]+1;
+				}
+				return arr;
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			//将方法作为参数带给另一个方法
+			//arr为一个数组、f1为参数的方法
+			function a(arr,f1){
+				//当然我们可以对传进来的参数做一个判断
+				if(typeof f1 === "function"){
+					for(var i = 0; i<arr.length; i++){
+						arr[i] = f1(arr[i]);
+					}
+					return arr;
+				}else{
+					throw "传进来的不是方法函数";
+				}
+				
+				
+			}
+			
+			function add(tes){
+				return  tes + 10;
+			}
+			
+			function div(tes){
+				return tes / 2;
+			}
+			function reduce(tes){
+				return tes-1;
+			}
+			function ride(tes){
+				return tes*2;
+			}
+			console.log(a([1,2,3,4,],add));
+			console.log(a([4,6,8],div));
+			console.log(a([4,6,8],reduce));
+			console.log(a([4,6,8],ride));
+			
+			//我们还可以这样写
+			 var result = a([1, 2, 3], function(n) {
+                return n * 3;
+            });
+            console.log(result);
+		</script>
+	</body>
+</html>

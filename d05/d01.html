@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//创建对象 
+			//字面量对象
+			var obj1 = {
+				name:"ruse"
+			};
+			//通过Object创建对象
+			var obj2 = new Object();
+			obj2.name = "tom"
+			
+			//构造函数
+			function Car(name,age){
+				this.name = name;
+				this.age = age;
+				this.show = function(){
+					console.log("名字是："+name+",年龄是："+age);
+				}
+			};
+			//通过new关键字调用构造函数，创建一个对象tom
+           	var tom=new Car("tom",18);
+           	var jack=new Car("jack",20);
+           	tom.show();
+           	jack.show();
+           
+		</script>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>继承</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//定义动物类
+			function Animal()
+            {
+                this.name="动物";
+                this.getName=function(){
+                    return this.name;
+                }
+                this.setName=function(name){
+                    this.name=name;
+                }
+                this.bark=function(){
+                    console.log(this.name+"在叫...");
+                }
+            }
+            //定义狗类
+            function Dog(){
+            	//狗的私有方法
+                this.hunt=function(){console.log("狗在捕猎");};
+            }
+            //指定Dog构造函数的原型对象，简单理解为父类
+            Dog.prototype=new Animal();//继承
+            
+            function Cat(){
+            	//猫的私有方法
+                this.hunt=function(){console.log("猫在抓老鼠");};
+            }
+            Cat.prototype=new Animal();//指定Cat的构造函数原型，继承Animal类
+            
+            var dog=new Dog();
+            dog.bark();//动物在叫...
+            dog.hunt();//狗在捕猎
+            
+            var cat=new Cat();
+            cat.bark();//动物在叫
+            cat.hunt();//猫在抓老鼠
+		</script>
+	</body>
+</html>

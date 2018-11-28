@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		 <script>
+            alert(typeof Object.beget);
+            if(typeof Object.beget==="undefined"){
+            	//给Object添加方法
+                Object.beget=function(proto){
+                    //构造方法，F是一个类型
+                    var F=function(){};
+                    //指定类型F的原型
+                    F.prototype=proto;
+                    //创建一个F类型的对象
+                    return new F();
+                }
+            }
+            
+            //机器
+            var  Machine={
+                name:"机器",
+                show:function(){
+                    console.log("机器的名称是："+this.name);
+                }
+            };
+            
+            //创建对象，指定原型
+            var bmw=Object.beget(Machine);
+            bmw.name="宝马";
+            bmw.show();
+            
+            console.log(bmw);
+        </script>
+	</body>
+</html>

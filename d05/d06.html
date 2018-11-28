@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>对象拷贝</title>
+	</head>
+	<body>
+		 <script type="text/javascript">
+            //浅拷贝
+            var obj1={name:"cat"};
+            var obj2=obj1;
+        
+            obj2.name="pig";
+            
+//          console.log(obj1.name);//pig
+//          console.log(obj2.name);//pig
+            
+            //深拷贝
+            var obj3 = {
+                name: "cat",
+                show:function(){
+                    console.log(this.name);
+                }
+            };
+            //开始拷贝
+            var obj4 = JSON.parse(JSON.stringify(obj3));
+
+            obj4.name = "pig";
+
+            console.log(obj3.name);//cat
+            console.log(obj4.name);//pig
+            
+            obj3.show();//cat
+            //无法拷贝函数
+            //obj4.show();  //函数被丢失报错
+            
+            
+            
+            
+            //通过递归拷贝对象的所有的函数
+            function deepClone(obj) {
+                let objClone = Array.isArray(obj) ? [] : {};
+                if(obj && typeof obj === "object") {
+                    for(key in obj) {
+                        if(obj.hasOwnProperty(key)) {
+                            //判断ojb子元素是否为对象，如果是，递归复制
+                            if(obj[key] && typeof obj[key] === "object") {
+                                objClone[key] = deepClone(obj[key]);
+                            } else {
+                                //如果不是，简单复制
+                                objClone[key] = obj[key];
+                            }
+                        }
+                    }
+                }
+                return objClone;
+            }
+            
+            var obj5 = deepClone(obj3);
+            obj5.name = "dog";
+
+            console.log(obj3.name);//cat
+            console.log(obj5.name);//dao
+
+            obj3.show();//cat
+            obj5.show();//dog
+            
+            
+            
+        </script>
+	</body>
+</html>

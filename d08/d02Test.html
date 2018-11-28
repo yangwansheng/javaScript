@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		
+		<button>按钮1</button><br />
+        <button>按钮2</button><br />
+        <input type="text" value="username" /><br />
+        <input type="text" value="password" />
+		
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript">
+			//IIFE 立即函数表达式 factory传入一个方法
+			;(function(factory) {
+				factory(window, jQuery, document);//执行传入的方法
+			//编写传入的方法
+			}(function(win, jq, doc) {
+				//$().fn.superPlus 方法 根方法 options为添加的宽度
+				$.fn.superPlus = function(options) {
+					//循环绑定事件的标签(this); obj为每个标签的对象
+					$.each(this, function(index, obj) {
+						//$("<span/>").html("+")一个新标签，
+						//css("cursor", "pointer") 鼠标悬浮样式
+						//.click点击事件
+						//.insertAfter(obj);追加到 obj标签后面
+			            $("<span/>").html("+").css("cursor", "pointer").click(function() {
+			                //修改obj标签的宽度
+			                $(obj).width($(obj).width() + (options || 100));
+			            }).insertAfter(obj);
+			        });
+				}
+			}));
+			//调用
+			$("button").superPlus();
+            $("input").superPlus(10);
+		</script>
+	</body>
+
+</html>

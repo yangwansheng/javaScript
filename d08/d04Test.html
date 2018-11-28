@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js" ></script>
+	</head>
+	<body>
+		<h1>创建对象的三种方法</h1>
+		<h1>逗号的作用</h1>
+		  价格：<input type="text" id="price" /><span id="priceMsg"></span>
+		<script type="text/javascript">
+			//1、创建对象的方法
+			function Car(names){
+				this.name = names;
+			}
+			//第一种 直接赋值
+			var c1 = new Car("tom");
+			
+			//第二种 创建空的对象字面量
+			var c2 = {};
+			c2.__proto__ = Car.prototype;
+			//调用构造器，初始化创建的对象
+			Car.call(c2,"rose");
+			
+			
+			
+			//2、逗号的作用
+			function f1() {
+                var i = 1;
+                return ++i, i += 1, i += 2;
+            }
+        	console.log(f1());//输出5
+			function f2(){
+				var i = 1;
+				return (i,i+=10,i++,++i,i++);
+			}
+			console.log(f2());//输出13  最后面的i++ +号在后缀还没有赋值就返回了
+			//逗号的作用2
+			function valid() {
+                var price = $("#price");
+                var priceMsg = $("#priceMsg");
+                var val = "";
+                //返回val,val等于文本框的值，判断是否等于文字，如果是返回设置标签内容格式错误和返回 false ，否则返回标签内容空和返回 true
+                return(val = price.val(), isNaN(val)) ? (priceMsg.html('格式错误').css("color","red"), false) : (priceMsg.html(''), true);
+            }
+
+            $("#price").keyup(function(){
+                console.log(valid());
+            });
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>封装</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//动物父类
+            function Animal() {
+            	//name属性
+                this.name = "动物";
+                //weight属性
+                var weight = 0; //重量
+                //封装wight属性
+                this.getWeight = function() { //读 
+                    return weight;
+                };
+                //封装wight属性
+                this.setWeight = function(_weight) { //写
+                	//判断wight写入的参数是否正确
+                    if(_weight > 0) {
+                        weight = _weight;
+                    } else {
+                        throw "动物的重量必须为正数";//抛出错误
+                    }
+                }
+            }
+
+            var cat = new Animal();//创建cat对象
+            cat.name = "猫"; //设置名字
+            try{
+                cat.setWeight(-90); //写入一个负数参数
+            }catch(e){
+                console.log(e);////动物的重量必须为正数
+            }
+        </script>
+	</body>
+</html>

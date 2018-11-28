@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>简单输入框表单</title>
+		<style>
+			#tip{
+				color: red;
+				display: none;
+			}
+		</style>
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js" ></script>
+	</head>
+	<body>
+		<form id="form1">
+			<p>
+				<label>输入用户名：</label>
+				<input type="text" id="userName" name="userName" />		
+				<label id="tip">用户名不能为空</label>
+			</p>
+			<p>
+				<label>输入密码：</label>
+				<input type="password" id="userPwd" name="userPwd" />
+			</p>
+			<p>
+				<label>重复密码：</label>
+				<input type="password" id="pwds" name="pwds" />
+			</p>
+			<p> 
+				<input type="button" name="button" id="button" value="提交" />
+				<input type="reset" name="reset" id="reset" value="重置" />
+			</p>
+		</form>
+		<script type="text/javascript">
+			
+			//提交按钮
+			$("#button").click(function(){
+				var pwd1 = $("#userPwd").val();
+				var pwd2 = $("#pwds").val();
+				if(pwd1 === pwd2){
+					
+				}else{
+					alert("两次输入的密码不一致！");
+				}
+ 			});
+ 			
+ 			
+ 			var getStu2 = function (f1){
+				//判断一下f1是否为函数
+				if(typeof f1 === "function"){
+					$.get("user.json",function(data){
+						//我们不返回，直接在这里处理，利用方法作为参数、把传进来的方法这只了执行
+						f1(data);
+		            },"json");
+				}else{
+					throw "你没有把方法传进来";
+				}
+	        }
+			
+			var showStu = function (data){
+				var userName = $("#userName").val();
+				if(userName === null || userName == ""){
+ 					$("#tip").html("请输入用户名");
+					$("#tip").css("display","inline");
+					return false;
+ 				}else{
+ 					for(var i = 0 ; i< data.data.length;i++){
+						if(userName == data.data[i].name){
+							$("#tip").html("该用户名已经存在了，你使用其他用户名");
+							$("#tip").css("display","inline");
+							return false;
+						}else{
+							alert("提交成功");
+						}
+					}
+ 				}
+			}
+ 			//判断用户名，焦点离开事件
+ 			$("#userName").blur(function(){
+ 				
+ 				getStu2(showStu);
+ 				
+ 				
+ 			});
+		</script>
+	</body>
+</html>

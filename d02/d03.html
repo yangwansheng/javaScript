@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>异步请求的回调函数</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js" ></script>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			var student;
+			var getStu = function (){
+	            $.get("studens.json",function(data){
+	                student=data;//此处student没有拿到数据，因为这是异步请求，没有执行到这一步早就返回了
+	            },"json");
+	        }
+			
+			getStu();
+            alert(student);
+			
+			
+			var getStu2 = function (f1){
+				//判断一下f1是否为函数
+				if(typeof f1 === "function"){
+					$.get("studens.json",function(data){
+						//我们不返回，直接在这里处理，利用方法作为参数、把传进来的方法这只了执行
+						f1(data);
+		            },"json");
+				}else{
+					throw "你没有把方法传进来";
+				}
+	        }
+			
+			var showStu = function (data){
+				console.log(data);
+			}
+			
+			//调用第二种方法
+			getStu2(showStu);
+			
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

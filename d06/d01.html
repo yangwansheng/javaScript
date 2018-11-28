@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>This</title>
+	</head>
+	<body>
+		谁调用当前函数this就指向谁，多数情况下不知道调用者时this指向window。
+		<!--这个绑定事件 其实为 onclick = 'window.fun()' 可以正确输出-->
+		<button id="btn1" onclick="fun()">按钮a</button>
+		<button id="btn2">按钮b</button>
+		<button id="btn3">按钮c</button>
+		<button id="btn4">按钮e</button>
+		<script type="text/javascript">
+			
+			var hi = "你好！";
+			holler = "您好！"
+			function fun(){
+				console.log("点击了"+this.hi);
+				console.log("点击了"+this.holler);
+			}
+			var obj = {
+				hi:"大家好",
+				ctn:function(){
+					console.log(this.hi);
+				}
+			}
+			//输出大家好  obj对象
+			obj.ctn();
+			//这个绑定事件 this.hi为undefined，this.holler为undefined
+			document.getElementById("btn2").onclick = fun;
+			//输出undefined 因为对象为标签，是当前标签调用而标签没有hi属性，
+			//所以为undefined obj.ctn这一段位代码
+			document.getElementById("btn3").onclick = obj.ctn;
+			//这是监听绑定事件，结果同上
+			document.getElementById("btn4").addEventListener("click",fun,false)
+			
+			
+			show();//undefined widows.nickname还没有定义所以undefined
+			
+			nickname="rose";
+			
+			show();//rose widows.nickname = ‘rose’定义了
+			function show() {
+				//当obj1.view()时this就是obj1，obj2.view()时this就是obj2
+				console.log(this.nickname);
+			}
+
+			var obj1 = {
+				nickname: "jack",
+				view: show
+			};
+			obj1.view();//jack
+
+			var obj2 = {
+				nickname: "mark",
+				view: show
+			};
+			
+			obj2.view();//mark
+			
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>评论星星</title>
+		<style>
+			.imgf{
+				background: url(../img/starky.png) 100% 100%;
+				
+				float: left;
+				width: 21px;
+				height: 21px;
+			}
+			.imgf2{
+				background: url(../img/starsy.png) 100% 100%;
+				
+				float: left;
+				width: 21px;
+				height: 21px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="pingfeng" >
+			
+		</div>
+		
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js" ></script>
+		<script type="text/javascript">
+			
+			;(function(factory){
+				factory(window,jQuery,document);
+			}(function(win,jq,doc){
+				$.fn.superPlus = function() {
+					var that = this;
+					var texts = $("<label />").html("请选择你的评价");
+					texts.appendTo(that);
+					var divs = [];
+					//生成星星
+					for(let i = 0;i<5;i++){
+						divs.push($("<div class='imgf'>"));//添加数组
+					}
+					//鼠标移开
+					function leave(){
+						divs[0].attr("class","imgf");
+						divs[1].attr("class","imgf");
+						divs[2].attr("class","imgf");
+						divs[3].attr("class","imgf");
+						divs[4].attr("class","imgf");
+						texts.html("请选择你的评价");
+					}
+					//清空鼠标移开时间
+					function delleave(a=1){
+						for(let i = 0;i<a;i++){
+							divs[i].unbind("mouseleave");//清空绑定事件
+						}
+					}
+					
+					divs[0].appendTo(that).click(function(){
+						divs[0].attr("class","imgf2");
+						delleave(1);
+						texts.html("非常不好").mouseover(function(){
+						divs[0].attr("class","imgf2");
+						texts.html("非常不好");
+					}).mouseleave(leave);
+					});
+					divs[1].appendTo(that).click(function(){
+						divs[0].attr("class","imgf2");
+						divs[1].attr("class","imgf2");
+						delleave(2);
+						texts.html("很不好");
+					}).mouseover(function(){
+						divs[0].attr("class","imgf2");
+						divs[1].attr("class","imgf2");
+						texts.html("很不好");
+					}).mouseleave(leave);
+					divs[2].appendTo(that).click(function(){
+						divs[0].attr("class","imgf2");
+						divs[1].attr("class","imgf2");
+						divs[2].attr("class","imgf2");
+						delleave(3);
+						texts.html("一般般");
+					}).mouseover(function(){
+						divs[0].attr("class","imgf2");
+						divs[1].attr("class","imgf2");
+						divs[2].attr("class","imgf2");
+						texts.html("一般般");
+					}).mouseleave(leave);
+					divs[3].appendTo(that).click(function(){
+						divs[0].attr("class","imgf2");
+						divs[1].attr("class","imgf2");
+						divs[2].attr("class","imgf2");
+						divs[3].attr("class","imgf2");
+						delleave(4);
+						texts.html("很好");
+					}).mouseover(function(){
+						divs[0].attr("class","imgf2");
+						divs[1].attr("class","imgf2");
+						divs[2].attr("class","imgf2");
+						divs[3].attr("class","imgf2");
+						texts.html("很好");
+					}).mouseleave(leave);
+					divs[4].appendTo(that).click(function(){
+						divs[0].attr("class","imgf2");
+						divs[1].attr("class","imgf2");
+						divs[2].attr("class","imgf2");
+						divs[3].attr("class","imgf2");
+						divs[4].attr("class","imgf2");
+						delleave(5);
+						texts.html("非常好");
+					}).mouseover(function(){
+						divs[0].attr("class","imgf2");
+						divs[1].attr("class","imgf2");
+						divs[2].attr("class","imgf2");
+						divs[3].attr("class","imgf2");
+						divs[4].attr("class","imgf2");
+						texts.html("非常好");
+					}).mouseleave(leave);
+				}
+			}));
+			
+			
+			
+			
+			
+			$("#pingfeng").superPlus();
+			
+			
+		</script>
+	</body>
+</html>

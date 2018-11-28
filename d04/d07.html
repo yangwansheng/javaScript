@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			 //机器 父类
+            var  Machine={
+                weight:1355
+            };
+            
+            //构造方法，类
+            function Car(_name){
+                this.name=_name;
+            }
+            
+            //Car的原型是机器//给Car原型添加Machine这个对象到里面去
+            Car.prototype=Machine;
+            
+            //创建对象
+            var bmw=new Car("宝马");
+            var benz=new Car("奔驰");
+            console.log(bmw.name);
+            console.log(bmw.weight);
+		</script>
+	</body>
+</html>

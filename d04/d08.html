@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var  rose={
+                weight:1355
+            };
+			
+			
+			var lucy=Object.create(rose);  //简单认为是：创建一个对象且继承rose
+            lucy.name="lucy";  //重写
+            
+            var jack=Object.create(rose);
+            jack.name="jack";
+            
+            //修改原型中的方法
+            rose.show=function(){
+                console.log("姓名->"+this.name+">>>"+this.weight);
+            }
+            
+            lucy.show();
+            jack.show();
+		</script>
+	</body>
+</html>

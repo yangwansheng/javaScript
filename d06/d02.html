@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>javaScrip解析步骤</title>
+	</head>
+	<body>
+		解析原则：
+		先寻找有var 定义的变量
+		把名字写入
+		{
+			i:undefined,
+			foo:undefined,
+			fun:function(){},//如果是函数，会提取出来
+		}
+		
+		<script type="text/javascript">
+			/*
+			console.log(i);//undefined
+			//出错原因是j没有var定义
+			console.log(j);//出错
+			
+			var i = 5;
+			j = 10;
+			console.log(i);//5
+			console.log(j);//10
+			
+			
+			fun();//比如方法自动提升，
+			foo();//出错--应为foo为undefined不是一个function
+			
+			//函数
+			function fun(){
+				console.log("fun函数");
+			}
+			//声明式函数
+			var foo = function(){
+				console.log("foo函数");
+			}
+			
+			foo();//正常
+			
+			*/
+			
+			
+			this.names = "吉娃娃";
+
+			function Dog(names) {
+				this.names = names;
+				this.bark = function() {
+					console.log(this.names + "在叫，汪汪...");
+				}
+				return this.bark;
+			}
+
+			var bark = new Dog("哈士奇");
+			//var bark = function(){} //Dog返回的是一个方法
+			
+			bark();//吉娃娃在汪汪叫 windows.bark();相当于windows调用
+			
+			
+		</script>
+	</body>
+</html>

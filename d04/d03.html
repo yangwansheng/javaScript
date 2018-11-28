@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var name = "The Window";
+		　　	var object = {
+		　　　　	name : "My Object",
+		　　　　	getNameFunc : function(){//由于这个方法里面没有变量
+					//所以这里不能算是闭包
+		　　　　　　	return function(){
+						//this在外面的函数里没有找到，就找到了windows
+		　　　　　　　　		return this.name;//所以这个this为windows
+		　　　　　　	};
+		
+		　　　　	}
+		　　	};
+		　　	alert(object.getNameFunc()());
+		
+		
+			var name2 = "The Window";
+		　　	var object2 = {
+		　　　　	name2 : "My Object",
+		　　　　	getNameFunc : function(){
+					var that = this;//这里定义了变量，而这个this为Object
+		　　　　　　	return function(){
+						//这里调用了参数
+		　　　　　　　　		return that.name2;
+		　　　　　　	};
+		
+		　　　　	}
+		　　	};
+		　　	alert(object2.getNameFunc()());
+		
+		
+		</script>
+	</body>
+</html>

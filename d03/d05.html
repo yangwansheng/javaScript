@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>测试跨域</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js" ></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//简单请求
+			$.get("http://localhost:8080/pdt","jsonp").done(function(data) {
+                console.log(data);
+            });
+            $.post("http://localhost:8080/pdt","jsonp").done(function(data){
+            	console.log(data);
+            });
+            //复杂请求
+            $.ajax({
+                type:"POST",
+                url:"http://localhost:8080/pdt",
+                contentType:"application/json;charset=utf-8",
+                dataType:"json",
+                success:function(data){
+                    console.log(data);
+                }
+            });
+            
+            
+            
+            
+		</script>
+	</body>
+</html>

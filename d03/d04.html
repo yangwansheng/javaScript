@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js" ></script>
+		<script type="text/javascript" src="../js/dialog.js" ></script>
+		<link rel="stylesheet" href="../css/dialog.css" />
+	</head>
+	<body>
+		<button id="btnShow" >弹出框</button>
+        <button id="btnLoa">加载中</button>
+        <button id="btnQipao">气泡浮层</button>
+        <button id="btnTishi">提示框</button>
+        <button id="btnInput">输入框</button>
+        <button id="btnTes">多个选择</button>
+        
+		<script type="text/javascript">
+			var app = {
+				init:function(){
+					app.beat();
+				},
+				beat:function(){
+					//弹出框
+					$("#btnShow").click(function(){
+						var d = dialog({
+		                    title: '消息',//头部
+		                    //设置宽度
+		                    //width:100, 
+		                    //设置外边距
+		                    //padding: 0,
+		                    //设置可以拖动
+		                    //fixed: true,
+		                    
+		                    content: '风吹起的青色衣衫，夕阳里的温暖容颜，你比以前更加美丽，像盛开的花<br>——许巍《难忘的一天》',
+		                    //statusbar 在左下角写入复选框
+		                    statusbar: '<label><input type="checkbox">不再提醒</label>',
+		                    okValue: '确 定',
+		                    //点击ok按钮后执行的回调函数
+		                    ok: function() {
+		                        var that = this;//这个this为 d
+		                        setTimeout(function() {
+		                            that.title('提交中..'); //设置d弹窗的标题
+		                        }, 2000);
+		                        return false;
+		                    },
+		                    cancelValue: '取消',
+		                    cancel: function() {
+		                    	//点击取消按钮后执行内容
+		                        alert('你点了取消按钮');
+		                        //取消按钮默认返回true，
+		                        //如果返回为false,这弹框不关闭
+		                        //return false;
+		                    }
+		                });
+		                //d.width(200);设置宽度
+		                //d.height(300);设置高度
+		                d.show();//调用弹框
+					});
+					//加载中
+					$("#btnLoa").click(function(){
+						var d = dialog({
+		                    modal:true
+		                }).show();
+		                setTimeout(function () {
+							d.close().remove();
+						}, 2000);
+					});
+					//气泡浮层
+					$("#btnQipao").click(function(){
+						var d = dialog({
+							content: 'Hello World!',//内容
+							quickClose: true// 点击空白处快速关闭
+						});
+						d.show(document.getElementById('btnLoa'));//指定在哪个元素上浮出
+					});
+					//提示框
+					$("#btnTishi").click(function(){
+						var d = dialog({
+							content: '对话框将在两秒内关闭'
+						});
+						d.show();
+						//设置关闭
+						setTimeout(function () {
+							d.close().remove();
+						}, 2000);
+					});
+					//输入框
+					$("#btnInput").click(function(){
+						var d = dialog({
+							title: 'message',
+							content: '<input autofocus />'//内容可以输入标签
+						});
+						d.showModal();
+					});
+					//多个选择按钮
+					$("#btnTes").click(function(){
+						dialog({
+							button: [
+								{
+									value: '同意',
+									callback: function () {
+										this
+										.content('你同意了');
+										return false;
+									},
+									autofocus: true
+								},
+								{
+									value: '不同意',
+									callback: function () {
+										alert('你不同意')
+									}
+								},
+								{
+									id: 'button-disabled',
+									value: '无效按钮',
+									disabled: true
+								},
+								{
+									value: '关闭我'
+								}
+							]
+						}).show();
+					});
+				},
+			}
+			app.init();
+		</script>
+	</body>
+</html>

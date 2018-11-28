@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		立即执行函数表达式与匿名对象
+		<script type="text/javascript">
+			//1 正常定义函数 声明式函数
+            function f1(){
+                console.log("正常定义f1函数");
+            };
+            
+            //2 被误解的函数表达式 匿名函数
+            function(){
+                console.log("报错Unexpected token (");
+            }();//报错，不可以 立即执行
+            
+            //3 IIFE，括号中的内容被解释成函数表达式
+            (function(){
+                console.log("IIFE，正常执行");
+            })();
+            
+            /*(function(){
+                console.log("IIFE，正常执行");
+            })*/ //这一段可以表示为 一个function的变量 后面的()表示执行
+            
+            
+            
+            
+            //4 函数表达式
+            var f2=function(){
+                console.log("这也被视为函数表达式");
+            };
+            //这个可以立即执行
+            var f3=function(){
+                console.log("这个函数表达式正常");
+            }();
+            
+            
+            //最常用的两种写法
+			;(function(){ /* code */ }()); 
+			;(function(){ /* code */ })();
+            //在前面加上；表示不与前面的代码连在一起，避免出错、冲突
+            
+		</script>
+	</body>
+</html>

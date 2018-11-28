@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1> let、const 和块级作用域</h1>
+		<p>let:块级作用域,但是默认情况javascript中定义的变量都是弱类型的，可以动态变化</p>
+		<p>const :定义常量，不可修改，只可使用</p>
+		<script type="text/javascript">
+			//let
+			var a = 2;
+			{
+			  let a = 3;
+			  console.log(a); // 3
+			}
+			console.log(a); // 2
+			
+			//定义常量
+			const I = 100;
+            console.log(I);//输出 100
+            I = 200;//出错
+            console.log(I);
+			
+			//默认情况javascript中定义的变量都是弱类型的，可以动态变化
+			let c = 100;
+            if(true) {
+                c=true;
+                console.log(c);//true
+            }
+            console.log(c);//true
+			
+			
+		</script>
+	</body>
+</html>

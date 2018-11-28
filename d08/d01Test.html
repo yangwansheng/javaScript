@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.min.js" ></script>
+		<style>
+			label{
+				padding: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="text" /><label id="add">+</label><br/>
+		<button id="btntest">按钮A</button><label id="add2">+</label>
+		<script type="text/javascript">
+			
+			$.fn.extend({
+				//定义方法	
+				show_width:function(element,num){
+					$(this).click(function(){
+						var widths = element.width();
+						
+							widths+=num;
+						
+						element.css("width",widths);
+					});
+				}
+			});
+			
+			$("#add").show_width($("#text"),5);
+			
+			$("#add2").show_width($("#btntest"),50);
+			
+			
+		</script>
+	</body>
+</html>

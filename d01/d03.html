@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+//			var names = new Array();//定义空数组
+//			console.log(typeof(names));  //object
+//          console.log(names instanceof Array);  //true
+//          console.log("" instanceof String);  //false  String不是对象类型 ""是否为String的对象类型
+//          console.log(true instanceof Boolean);  //false Boolean不是对象类型 true是否为Boolean的对象类型
+            
+            
+            var array1 = new Array();  //空数组
+            var array2 = new Array(5);  //指定长度，可越界
+            var array3 = new Array("a","b","c",1,2,3,true,false);  //定义并赋值，元素类型可以不一致。
+            var array4=[];  //空数组，语法糖
+            var array5=[1,2,3,"x","y"];  //定义并赋值 元素类型可以不一致。
+            
+            //给数组下标为8的内容赋值或则修改
+            array2[8]="hello array12";  //赋值或修改
+            
+//          //遍历数组内容
+//           for (var i = 0; i < array3.length; i++) {
+//              console.log("arrayl3["+i+"]="+array3[i]);
+//          }
+//           
+			//添加数据，添加到数组的最后后面
+            array5.push("z");
+            //一次添加多个，添加到数组的前面
+            array5.unshift("2",4,"g","g")
+            //插入数据  //insertPos = 5 指定位置 ，deleteCount = 0 删除个数,后面是要添加的数据
+            array5.splice(5,1,"liu","99")
+             
+            //枚举  相当于遍历数组
+            for(var i in array5){ 
+                console.log(i+"="+array5[i]);  //此处的i是下标，通过下标在找出数组值
+            }
+            
+            
+            
+            
+		</script>
+	</body>
+</html>
